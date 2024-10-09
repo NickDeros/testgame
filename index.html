@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base href="/">
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="my_game">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <title>my_game</title>
+  <link rel="manifest" href="manifest.json">
+  <script src="main.js" type="application/javascript"></script>
+
+  <script>
+    // Funzione per inviare i valori a Dart
+    function sendValuesToDart(alpha, beta, gamma) {
+      if (window.dartFunction) {
+        window.dartFunction(alpha, beta, gamma);
+      }
+    }
+
+    window.addEventListener("devicemotion", function (event) {
+      console.log(event.rotationRate.alpha + " - " + event.rotationRate.beta + " - " + event.rotationRate.gamma);
+      var alpha = event.rotationRate.alpha !== null ? event.rotationRate.alpha : 0;
+      var beta = event.rotationRate.beta !== null ? event.rotationRate.beta : 0;
+      var gamma = event.rotationRate.gamma !== null ? event.rotationRate.gamma : 0;
+      sendValuesToDart(alpha, beta, gamma);
+    });
+
+  </script>
+
+</head>
+
+<body>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+
+</html>
